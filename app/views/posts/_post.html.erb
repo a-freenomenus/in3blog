@@ -1,0 +1,5 @@
+<div style="border-bottom: 1px solid">
+  <p><%= link_to h(post.title), post %></p>
+  <p><%=h truncate(post.body, 100) %></p>
+  <div><em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em></div>
+</div>
