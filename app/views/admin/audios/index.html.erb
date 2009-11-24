@@ -1,0 +1,24 @@
+<table>
+  <thead>
+    <tr>
+      <th width="200">Filename</th>
+      <th width="70">Filesize</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% for audio in @audios %>
+    <tr>
+      <td><%= audio.mp3_file_name %></td>
+      <td><%= number_to_human_size(audio.mp3_file_size, 2) %></td>
+      <td><%= link_to 'Delete', admin_audio_path(audio), :method => :delete, :confirm => 'Are you shure?'%></td>
+  <% end %>
+</table>
+
+<h1>Upload new</h1>
+<% form_for (@audio || Audio.new), :url => admin_audios_path, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <div>
+    <%= f.file_field :mp3 %><%= f.submit 'Upload' %>
+  </div>
+  
+<% end %>
