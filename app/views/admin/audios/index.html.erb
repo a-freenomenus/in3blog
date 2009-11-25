@@ -11,7 +11,7 @@
     <tr>
       <td><%= audio.mp3_file_name %></td>
       <td><%= number_to_human_size(audio.mp3_file_size, 2) %></td>
-      <td><%= mp3_player audio.mp3.url %></td>
+      <td><%= mp3_player audio.mp3.url(:original, false) %></td>
       <td><%= link_to 'Delete', admin_audio_path(audio), :method => :delete, :confirm => 'Are you shure?'%></td>
   <% end %>
 </table>
