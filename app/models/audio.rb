@@ -1,3 +1,5 @@
+require 'mp3info'
+
 class Audio < ActiveRecord::Base
   has_attached_file :mp3,
       :url  => "/assets/audios/:id_:basename.:extension",
@@ -8,5 +10,19 @@ class Audio < ActiveRecord::Base
       :message => 'filesize must be less than 20 MegaBytes'
   validates_attachment_content_type :mp3,
       :content_type => [ 'application/mp3', 'application/x-mp3', 'audio/mpeg', 'audio/mp3' ],
-      :message => 'file must be of filetype .mp3' 
+      :message => 'file must be of filetype .mp3'
+
+  after_mp3_post_process :fill_info
+  #after_create :fill_info
+
+  private
+
+  def fill_info
+    Mp3Info.open(mp3.queued_for_write[:original].path) do |mp3info|
+      self.bitrate = mp3info.bitrate
+      self.title = mp3info.tag.title
+      self.artist = mp3info.tag.artist
+    end
+  end
+
 end

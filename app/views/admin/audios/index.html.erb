@@ -1,7 +1,10 @@
 <table>
   <thead>
     <tr>
-      <th width="200">Filename</th>
+      <th width="150">Artist</th>
+      <th width="150">Title</th>
+      <th width="250">Filename</th>
+      <th width="30">Bitrate</th>
       <th width="70">Filesize</th>
       <th></th>
       <th></th>
@@ -9,7 +12,10 @@
   </thead>
   <% for audio in @audios %>
     <tr>
-      <td><%= audio.mp3_file_name %></td>
+      <td><%=h audio.artist %></td>
+      <td><%=h audio.title %></td>
+      <td><%=h audio.mp3_file_name %></td>
+      <td><%= audio.bitrate %></td>
       <td><%= number_to_human_size(audio.mp3_file_size, 2) %></td>
       <td><%= mp3_player audio.mp3.url(:original, false) %></td>
       <td><%= link_to 'Delete', admin_audio_path(audio), :method => :delete, :confirm => 'Are you shure?'%></td>
