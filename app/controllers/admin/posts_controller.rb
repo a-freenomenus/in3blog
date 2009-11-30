@@ -9,7 +9,12 @@ class Admin::PostsController < Admin::AdminController
       :theme_advanced_buttons1 => %w{ formatselect fontselect fontsizeselect bold italic underline strikethrough separator justifyleft justifycenter justifyright indent outdent separator bullist numlist forecolor separator link unlink image undo redo},
       :theme_advanced_buttons2 => [],
       :theme_advanced_buttons3 => [],
-      :plugins => %w{  }
+      :plugins => %w{ media },
+      # :valid_elements => %w{ 
+      #   object[classid|width|height|data|type|codebase|*]
+      #   param[name|value|_value]
+      #   embed[type|width|height|src|*]
+      # }
   }, :only => [:new, :list, :create, :edit, :update])
 
   def index
