@@ -1,6 +1,16 @@
 <% content_for :head do %>
-  <%= include_tiny_mce_if_needed %>
+  <%= javascript_include_tag "markitup/jquery.markitup.js" %>
+  <%= javascript_include_tag "markitup/sets/default/set.js" %>
+  <link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/markitup/style.css" />
+  <link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/default/style.css" />
 <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#post_body").markItUp(mySettings);
+  });
+
+</script>
 
 <% form_for @post, :url => @post.new_record? ? admin_posts_path : admin_post_path(@post) do |f| %>
   <%= f.error_messages %>
