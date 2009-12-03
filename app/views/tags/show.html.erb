@@ -1,3 +1,5 @@
 <% title @tag.name %>
 
-<%= render Post.tagged_with(@tag) %>
+<%= render @posts %>
+
+<%= will_paginate @posts %>
