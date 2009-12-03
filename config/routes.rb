@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.root :controller => 'posts', :action => 'index'
   map.resources :posts, :only => [:index, :show]
+  map.tag 'tags/:name', :controller => 'tags', :action => 'show'
 
   map.namespace :admin do |admin|
     admin.root :controller => 'posts', :action => 'index'

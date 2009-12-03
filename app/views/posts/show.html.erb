@@ -4,6 +4,13 @@
   <%= @post.body %>
 </p>
 
+<div>
+  <strong>Tags:</strong>
+  <% for tag in @post.tags %>
+    <span><%= link_to tag.name, tag_path(:name => tag.name) %></span>
+  <% end %>
+</div>
+
 <p>
   <%= link_to "View All", posts_path %>
 </p>

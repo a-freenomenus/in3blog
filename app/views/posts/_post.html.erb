@@ -1,5 +1,13 @@
-<div style="border-bottom: 1px solid">
+<div style="border-bottom: 1px solid; padding-bottom: 5px;">
   <p><%= link_to h(post.title), post %></p>
-  <p><%= truncate(post.body, 100) %></p>
+  <p><%= post.body %></p>
   <div><em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em></div>
+  <% unless post.tags.count.zero? %>
+    <div>
+      <strong>Tags:</strong>
+      <% for tag in post.tags %>
+        <span><%= link_to tag.name, tag_path(:name => tag.name) %></span>
+      <% end %>
+    </div>
+  <% end %>
 </div>
