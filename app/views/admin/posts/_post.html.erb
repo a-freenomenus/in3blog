@@ -1,6 +1,6 @@
 <div style="border-bottom: 1px solid; padding-bottom: 5px;">
   <p><%= link_to h(post.title), post %></p>
-  <p><%= post.body %></p>
+  <p><%= strip_cut(post.body) %></p>
   <div><em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em></div>
 
   <% unless post.tags.count.zero? %>
