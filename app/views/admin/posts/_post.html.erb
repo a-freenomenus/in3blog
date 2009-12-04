@@ -1,7 +1,8 @@
 <div style="border-bottom: 1px solid; padding-bottom: 5px;">
   <p><%= link_to h(post.title), post %></p>
-  <p><%= cut(post.body, post_path(post)) %></p>
+  <p><%= post.body %></p>
   <div><em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em></div>
+
   <% unless post.tags.count.zero? %>
     <ul class="inline">
       <strong>Tags:</strong>
@@ -12,4 +13,10 @@
       <% end %>
     </ul>
   <% end %>
+
+  <ul class="inline">
+    <li><%= link_to "Show", post %></li>
+    <li><%= link_to "Edit", edit_admin_post_path(post) %></li>
+    <li><%= link_to "Destroy", admin_post_path(post), :confirm => 'Are you sure?', :method => :delete %></li>
+  </ul>
 </div>

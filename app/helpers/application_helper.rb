@@ -12,4 +12,17 @@ module ApplicationHelper
     )
   end
 
+  def cut(text, url)
+    regexp = /\<cut\>(.*)\<\/cut\>/
+    mdata = regexp.match(text)
+    if mdata
+      cut_text = regexp.match(text)[1]
+      cut_pos = mdata.begin(0)
+      chars = text.mb_chars
+      chars[0..cut_pos - 1] + link_to(cut_text, url)
+    else
+      text
+    end
+  end
+
 end

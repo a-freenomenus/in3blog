@@ -1,7 +1,7 @@
 class Admin::PostsController < Admin::AdminController
 
   def index
-    @posts = Post.all
+    @posts = Post.paginate :page => params[:page], :per_page => 20, :order => "created_at DESC"
   end
   
   def new

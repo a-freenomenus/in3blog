@@ -4,12 +4,14 @@
   <%= @post.body %>
 </p>
 
-<div>
-  <strong>Tags:</strong>
-  <% for tag in @post.tags %>
-    <span><%= link_to tag.name, tag_path(:name => tag.name) %></span>
-  <% end %>
-</div>
+<% unless @post.tags.count.zero? %>
+  <div>
+    <strong>Tags:</strong>
+    <% for tag in @post.tags %>
+      <span><%= link_to tag.name, tag_path(:name => tag.name) %></span>
+    <% end %>
+  </div>
+<% end %>
 
 <p>
   <%= link_to "View All", posts_path %>
