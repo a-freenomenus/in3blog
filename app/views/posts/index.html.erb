@@ -4,4 +4,12 @@
 
 <div style="margin-top: 10px;">
   <%= will_paginate @posts %>
+  Results per page
+  <% [10, 20, 50].each do |count| %>
+    <% if @posts.per_page == count %>
+      <%= count %>
+    <% else %>
+      <%= link_to count, posts_path(:per_page => count) %>
+    <% end %>
+  <% end %>
 </div>

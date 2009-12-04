@@ -1,7 +1,10 @@
 class PostsController < ApplicationController
 
   def index
-    @posts = Post.paginate :page => params[:page], :per_page => 10, :order => 'created_at DESC'
+    per_page = params[:per_page] || cookies[:per_page] || 10
+    cookies[:per_page] = per_page
+
+    @posts = Post.paginate :page => params[:page], :per_page => per_page, :order => 'created_at DESC'
   end
   
   def show
