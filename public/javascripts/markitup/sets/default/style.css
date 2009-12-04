@@ -51,6 +51,10 @@
 	background-image:url(images/link.png);
 }
 
+.markItUp .markItUpButton18 a {
+	background-image:url(images/cut.png);
+}
+
 .markItUp .clean a {
 	background-image:url(images/clean.png);
 }

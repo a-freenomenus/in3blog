@@ -25,4 +25,8 @@ module ApplicationHelper
     end
   end
 
+  def strip_cut(text)
+    text.gsub(/\<cut\>.*\<\/cut\>/, '')
+  end
+
 end
