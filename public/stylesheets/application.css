@@ -92,3 +92,8 @@ ul.inline li.highlighted {
   display: inline;
   background: #fff587;
 }
+
+.tags {
+  background: url('../images/tag_blue.png') no-repeat top left;
+  padding-left: 20px;
+}

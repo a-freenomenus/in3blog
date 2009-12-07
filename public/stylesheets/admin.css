@@ -1,0 +1,19 @@
+.post_new a {
+  background: url('../images/page_add.png') no-repeat top left;
+  padding-left: 20px;
+}
+
+.post_show a {
+  background: url('../images/page.png') no-repeat top left;
+  padding-left: 20px;
+}
+
+.post_edit a {
+  background: url('../images/page_edit.png') no-repeat top left;
+  padding-left: 20px;
+}
+
+.post_delete a {
+  background: url('../images/page_delete.png') no-repeat top left;
+  padding-left: 20px;
+}
