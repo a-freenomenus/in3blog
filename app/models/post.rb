@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   acts_as_taggable_on :tags
+  has_friendly_id :title, :use_slug => true
 
   validates_presence_of :body, :title
 

@@ -16,4 +16,8 @@ describe Post do
     new_post(:body => '').should have(1).error_on(:body)
   end
 
+  it "should require title" do
+    new_post(:title => '').should have(1).error_on(:title)
+  end
+
 end
