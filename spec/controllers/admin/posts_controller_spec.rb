@@ -26,7 +26,7 @@ describe Admin::PostsController do
   
   it "create action should redirect when model is valid" do
     Post.any_instance.stubs(:valid?).returns(true)
-    post :create
+    post :create, :post => { :title => 'title' }
     response.should redirect_to(admin_posts_path)
   end
   
