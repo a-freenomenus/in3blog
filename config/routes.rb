@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'posts', :action => 'index'
-  map.resources :posts, :only => [:index, :show]
+  map.resources :posts, :only => [:index, :show], :collection => { :feed => :get }
   map.tag 'tags/:name', :controller => 'tags', :action => 'show'
 
   map.namespace :admin do |admin|

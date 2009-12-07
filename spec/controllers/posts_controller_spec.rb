@@ -13,5 +13,10 @@ describe PostsController do
     get :show, :id => Post.first
     response.should render_template(:show)
   end
+
+  it "feed action should render feed template with format 'rss'" do
+    get :feed, :format => :rss
+    response.should render_template(:feed)
+  end
   
 end

@@ -1,5 +1,9 @@
 <% title "In3blog" %>
 
+<% content_for :head do %>
+  <%= auto_discovery_link_tag(:rss, :action => 'feed', :format => :rss) %>
+<% end %>
+
 <% form_tag posts_path, :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search] %>

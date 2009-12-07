@@ -10,9 +10,13 @@ class PostsController < ApplicationController
       @posts = Post.recent.paginated_primitive_search(params[:search], :page => params[:page], :per_page => per_page)
     end
   end
+
+  def feed
+    @posts = Post.recent
+  end
   
   def show
     @post = Post.find(params[:id])
   end
-  
+
 end
