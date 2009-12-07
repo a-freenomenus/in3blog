@@ -1,5 +1,16 @@
 <% title "In3blog" %>
 
+<% form_tag posts_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<% unless params[:search].blank? %>
+  <p>Search results for <strong><%=h params[:search] %></strong></p>
+<% end %>
+
 <%= render :partial => @posts %>
 
 <div style="margin-top: 10px;">
@@ -9,7 +20,7 @@
     <% if @posts.per_page == count %>
       <%= count %>
     <% else %>
-      <%= link_to count, posts_path(:per_page => count) %>
+      <%= link_to count, posts_path(request.query_parameters.merge(:per_page => count)) %>
     <% end %>
   <% end %>
 </div>
