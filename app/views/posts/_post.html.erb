@@ -2,6 +2,7 @@
   <p><%= link_to h(post.title), post %></p>
   <p><%= cut(post.body, post_path(post)) %></p>
   <div><em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em></div>
+
   <% unless post.tags.count.zero? %>
     <div class="tags">
       <ul class="inline">
@@ -13,4 +14,10 @@
       </ul>
     </div>
   <% end %>
+
+  <ul class="inline">
+    <li class="post_show"><%= link_to "Show", post %></li>
+    <li class="post_edit"><%= link_to "Edit", edit_post_path(post) %></li>
+    <li class="post_delete"><%= link_to "Destroy", post, :confirm => 'Are you sure?', :method => :delete %></li>
+  </ul>
 </div>
