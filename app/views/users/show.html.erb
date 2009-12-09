@@ -1,0 +1,2 @@
+<% title "#{h(@user.username)}'s profile" %>
+<p><%= link_to 'Edit', edit_profile_path if @user == current_user %></p>

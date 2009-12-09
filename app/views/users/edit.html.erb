@@ -1,0 +1,18 @@
+<% title 'Edit your profile' %>
+
+<% form_for @user do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :username %><br/>
+    <%= f.text_field :username %>
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+    or <%= link_to "Back to profile", user_path(@user) %>
+  </p>
+<% end %>
+
+<%= link_to 'Change your password', change_password_path %>

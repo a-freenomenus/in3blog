@@ -1,17 +1,33 @@
 class UsersController < ApplicationController
+  before_filter :login_required, :only => [:edit, :update, :change_password, :update_password]
 
   def show
     @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
+  end
+
+  def change_password
+    @user = current_user
+  end
+
+  def update_password
+    @user = current_user
+    @user.updating_password = true
+    if @user.update_attributes(params[:user])
+      flash[:notice] = 'Password changed succesfully'
+      redirect_to @user
+    else
+      render :change_password
+    end
   end
 
   def update
     @user = User.find(params[:id])
 
-    if @user.update_attribues(params[:user])
+    if @user.update_attributes(params[:user])
       redirect_to user_path(@user)
     else
       render :edit
