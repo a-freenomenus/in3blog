@@ -15,4 +15,11 @@
 
 <p>
   <%= link_to "View All", posts_path %>
-</p>
+  </p>
+
+<% if logged_in? and can? :update, @post %>
+  <ul class="inline">
+    <li class="post_edit"><%= link_to "Edit", edit_post_path(@post) %></li>
+    <li class="post_delete"><%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %></li>
+  </ul>
+<% end %>
