@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   acts_as_taggable_on :tags
   has_friendly_id :title, :use_slug => true
 
+  belongs_to :user
+
   validates_presence_of :body, :title
 
   named_scope :recent, :order => 'created_at DESC'

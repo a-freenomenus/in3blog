@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :login_required, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :check_rights_for_modify, :only => [:edit, :update, :destroy]
 
   def index
     per_page = params[:per_page] || cookies[:per_page] || 10
@@ -24,7 +26,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(params[:post].merge(:user_id => current_user.id))
     if @post.save
       flash[:notice] = "Successfully created post."
       redirect_to posts_path
@@ -34,11 +36,9 @@ class PostsController < ApplicationController
   end
   
   def edit
-    @post = Post.find(params[:id])
   end
   
   def update
-    @post = Post.find(params[:id])
     if @post.update_attributes(params[:post])
       flash[:notice] = "Successfully updated post."
       redirect_to posts_path
@@ -48,10 +48,16 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "Successfully destroyed post."
     redirect_to posts_path
+  end
+
+  private
+
+  def check_rights_for_modify
+    @post = Post.find(params[:id])
+    unauthorized! if cannot? :modify, @post
   end
 
 end

@@ -1,0 +1,12 @@
+<% title 'Invite new user' %>
+
+<% form_for @invitation, :url => admin_invitations_path do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :recipient_email %><br/>
+    <%= f.text_field :recipient_email %>
+  </p>
+
+  <p><%= f.submit 'Invite' %></p>
+<% end %>

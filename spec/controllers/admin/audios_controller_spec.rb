@@ -2,16 +2,14 @@ require 'spec_helper'
 
 describe Admin::AudiosController do
 
-  #Delete these examples and add some real ones
-  it "should use Admin::AudiosController" do
-    controller.should be_an_instance_of(Admin::AudiosController)
+  before(:each) do
+    user = mock_model(User)
+    user.stub!(:admin?).and_return(true)
+    @controller.stub!(:current_user).and_return(user)
   end
 
-
-  describe "GET 'index'" do
-    it "should be successful" do
-      get 'index'
-      response.should be_success
-    end
+  it "index action should render index template" do
+    get :index
+    response.should render_template(:index)
   end
 end

@@ -9,6 +9,12 @@
   </head>
   <body>
     <div id="container">
+      <% if logged_in? %>
+        <div>
+          Welcome <%=h current_user.username %>!
+          <%= link_to "Log out", logout_path %>
+        </div>
+      <% end %>
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>

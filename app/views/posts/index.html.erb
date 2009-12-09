@@ -15,7 +15,9 @@
   <p>Search results for <strong><%=h params[:search] %></strong></p>
 <% end %>
 
-<p class="post_new"><%= link_to "New Post", new_post_path %></p>
+<% if logged_in? and can? :create, Post %>
+  <p class="post_new"><%= link_to "New Post", new_post_path %></p>
+<% end %>
 
 <%= render :partial => @posts %>
 

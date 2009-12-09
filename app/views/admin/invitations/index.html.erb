@@ -1,0 +1,24 @@
+<% title 'Invitations'%>
+
+<% unless @invitations.empty? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Registered?</th>
+        <th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for invitation in @invitations %>
+        <tr>
+          <td><%= invitation.recipient_email %></td>
+          <td><%= invitation.used? %></td>
+          <td><%= link_to('Delete', admin_invitations_path, :method => :delete) unless invitation.used? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<p><%= link_to 'Invite user', new_admin_invitation_path %></p>

@@ -1,0 +1,9 @@
+one:
+  recipient_email: MyString
+  token: MyString
+  recipient_id: 1
+
+two:
+  recipient_email: MyString
+  token: MyString
+  recipient_id: 1
