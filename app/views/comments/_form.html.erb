@@ -1,0 +1,17 @@
+<% remote_form_for comment, :url => comment_post_path(@post), :method => :post,
+  :success => "if($('#new_comment > .fieldWithErrors').size() == 0) { $('#comment_body').val(''); $('#comment_username').val('')}" do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :username %><br/>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :body %><br/>
+    <%= f.text_area :body, :rows => 10 %>
+  </p>
+
+  <p>
+    <%= f.submit 'Comment' %>
+  </p>
+<% end %>

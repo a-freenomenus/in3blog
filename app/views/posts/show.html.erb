@@ -23,3 +23,13 @@
     <li class="post_delete"><%= link_to "Destroy", @post, :confirm => 'Are you sure?', :method => :delete %></li>
   </ul>
 <% end %>
+
+<h2>Comments</h2>
+
+<div id="comment_form">
+  <%= render :partial => 'comments/form', :locals => { :comment => Comment.new } %>
+</div>
+
+<div id="comments">
+  <%= render :partial => @post.comments %>
+</div>
