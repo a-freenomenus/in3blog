@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :username, :email, :password, :password_confirmation, :old_password
+  attr_accessible :username, :email, :password, :password_confirmation, :old_password, :open_id
   
   has_friendly_id :username
 
@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   named_scope :admins, :conditions => { :admin => true }
   named_scope :editors, :conditions => { :admin => false }
+  named_scope :with_open_id, :conditions => { :open_id => true }
   
   attr_accessor :password, :old_password, :updating_password
   before_save :prepare_password
@@ -30,6 +31,10 @@ class User < ActiveRecord::Base
   
   def matching_password?(pass)
     self.password_hash == encrypt_password(pass)
+  end
+
+  def self.find_by_open_id(open_id)
+    with_open_id.find_by_username(open_id)
   end
 
   private

@@ -1,11 +1,22 @@
+<% unless logged_in? %>
+  You can signup with <%= link_to_function 'OpenID', "$('#openid_signup').show()" %>
+  <div id="openid_signup" style="display:none">
+    <% form_tag sessions_path do %>
+      <%= text_field_tag :openid_identifier, '', :size => 30 %>
+      <%= submit_tag 'Log in' %>
+    <% end %>
+  </div>
+<% end %>
 <% remote_form_for comment, :url => comment_post_path(@post), :method => :post,
   :success => "if($('#new_comment > .fieldWithErrors').size() == 0) { $('#comment_body').val(''); $('#comment_username').val('')}" do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :username %><br/>
-    <%= f.text_field :username %>
-  </p>
+  <% unless logged_in? %>
+    <p>
+      <%= f.label :username %><br/>
+      <%= f.text_field :username %>
+    </p>
+  <% end %>
   <p>
     <%= f.label :body %><br/>
     <%= f.text_area :body, :rows => 10 %>

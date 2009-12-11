@@ -54,6 +54,7 @@ class PostsController < ApplicationController
   end
 
   def comment
+    params[:comment].merge!(:user_id => current_user.id) if logged_in?
     @post = Post.find(params[:id])
     @comment = @post.comments.new(params[:comment])
   end

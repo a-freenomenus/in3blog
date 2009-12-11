@@ -117,3 +117,14 @@ ul.inline li.highlighted {
   background: url('../images/page_delete.png') no-repeat top left;
   padding-left: 20px;
 }
+
+input#openid_identifier {
+  background: url('../images/openid.png') no-repeat top left;
+  padding-left: 20px;
+  border: 1px solid #D1D1D1;
+}
+
+.user_with_open_id {
+  background: url('../images/openid.png') no-repeat top left;
+  padding-left: 20px;
+}

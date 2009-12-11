@@ -6,7 +6,7 @@ class Ability
 
     if user.admin?
       can :manage, :all
-    else
+    elsif !user.open_id?
       can :modify, Post do |post|
         post && post.user == user
       end
