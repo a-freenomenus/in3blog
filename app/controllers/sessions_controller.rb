@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
   def new
   end
-  
+
   def create
+    session[:return_url] ||= request.referrer
+
     if using_open_id?
       authenticate_with_openid
     else
@@ -12,6 +14,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
+    session[:return_url] = nil
     flash[:notice] = "You have been logged out."
     redirect_to root_url
   end
@@ -42,7 +45,7 @@ class SessionsController < ApplicationController
       else
         flash[:error] = "Login with openid failed"
       end
-      redirect_to root_url
+      redirect_to session[:return_url]
     end
   end
 
