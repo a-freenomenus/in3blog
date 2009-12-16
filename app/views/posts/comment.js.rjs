@@ -1,6 +1,6 @@
 if @comment.save
   page.insert_html :bottom, 'comments', :partial => 'comments/comment', :object => @comment
-  #page.replace 'comments_count', @entry.comments.count
+  page.replace 'comments_count', @post.comments.count
   page.replace_html 'comment_form', :partial => 'comments/form', :locals => { :comment => Comment.new }
 else
   page.replace_html 'comment_form', :partial => 'comments/form', :locals => { :comment => @comment }

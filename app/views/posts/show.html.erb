@@ -1,8 +1,8 @@
 <% title h(@post.title) %>
 
-<p>
+<div>
   <%= strip_cut(@post.body) %>
-</p>
+</div>
 
 <% unless @post.tags.count.zero? %>
   <div>
@@ -25,7 +25,7 @@
 <% end %>
 
 <a name="comments"></a>
-<h2>Comments (<%= @post.comments.count %>)</h2>
+<h2>Comments (<span id="comments_count"><%= @post.comments.count %></span>)</h2>
 
 <div id="comment_form">
   <%= render :partial => 'comments/form', :locals => { :comment => Comment.new } %>
