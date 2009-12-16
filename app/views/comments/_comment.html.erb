@@ -1,14 +1,13 @@
 <div id="comment_<%= comment.id %>" style="margin-top: 10px; border-bottom: 1px solid; padding-bottom: 5px;">
-  <p>
-    <% if comment.user %>
-      <% if comment.user.open_id? %>
-        <p class="user_with_open_id"><%=h comment.user.username %></p>
-      <% else %>
-        <%= link_to h(comment.user.username), user_path(comment.user) %>
-      <% end %>
+  <% if comment.user %>
+    <% if comment.user.open_id? %>
+      <p class="user_with_open_id"><%=h comment.user.username %></p>
     <% else %>
-      <strong><%= comment.username %></strong>
+      <p><%= link_to h(comment.user.username), user_path(comment.user) %></p>
     <% end %>
-  </p>
+  <% else %>
+    <p><strong><%= comment.username %></strong></p>
+  <% end %>
+
   <p><%=h comment.body %></p>
 </div>
