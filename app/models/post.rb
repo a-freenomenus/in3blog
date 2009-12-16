@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable_on :tags
   has_friendly_id :title, :use_slug => true
 
-  has_many :comments
+  has_many :comments, :dependent => :destroy, :order => 'created_at ASC'
   belongs_to :user
 
   validates_presence_of :body, :title

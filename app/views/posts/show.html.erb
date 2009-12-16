@@ -24,7 +24,8 @@
   </ul>
 <% end %>
 
-<h2>Comments</h2>
+<a name="comments"></a>
+<h2>Comments (<%= @post.comments.count %>)</h2>
 
 <div id="comment_form">
   <%= render :partial => 'comments/form', :locals => { :comment => Comment.new } %>
