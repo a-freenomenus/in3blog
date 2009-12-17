@@ -1,6 +1,6 @@
 <div style="border-bottom: 1px solid; padding-bottom: 5px;">
   <p><%= link_to h(post.title), post %></p>
-  <p><%= cut(post.body, post_path(post)) %></p>
+  <div><%= cut(post.body, post_path(post)) %></div>
   <div>
     <%= link_to h(post.user.username), user_path(post.user) %> 
     at <em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em>

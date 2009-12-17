@@ -59,6 +59,20 @@ class PostsController < ApplicationController
     @comment = @post.comments.new(params[:comment])
   end
 
+  def upload_audio
+    @audio = Audio.new(params[:audio])
+
+    responds_to_parent do
+      render :update do |page|
+        if @audio.save
+          page.insert_html :bottom, 'audios', :partial => '/posts/partials/audio', :object => @audio
+          page.insert_html :bottom, 'audios_fields', :partial => '/posts/partials/audio_fields', :locals => { :audio => @audio }
+        end
+        page.replace_html 'audio_form', :partial => '/posts/partials/forms/audio'
+      end
+    end
+  end
+
   private
 
   def check_rights_for_modify

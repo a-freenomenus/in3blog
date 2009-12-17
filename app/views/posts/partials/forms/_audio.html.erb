@@ -1,0 +1,11 @@
+<% form_for :audio, :url => upload_audio_posts_path, 
+  :html => { :multipart => true, :target => 'audio_upload_frame', :id => 'audio_upload_form' } do |f| %>
+  <%= f.error_messages %>
+
+  <div>
+    <%= f.file_field :mp3 %>
+    <%= f.submit "Upload" %>
+  </div>
+<% end %>
+
+<iframe id="audio_upload_frame" name="audio_upload_frame" style="display: none"></iframe>  

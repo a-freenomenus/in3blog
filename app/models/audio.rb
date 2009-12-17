@@ -13,7 +13,8 @@ class Audio < ActiveRecord::Base
       :message => 'file must be of filetype .mp3'
 
   after_mp3_post_process :fill_info
-  #after_create :fill_info
+
+  belongs_to :post
 
   private
 

@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
   has_many :comments, :dependent => :destroy, :order => 'created_at ASC'
+  has_many :audios
   belongs_to :user
 
   validates_presence_of :body, :title
@@ -16,6 +17,18 @@ class Post < ActiveRecord::Base
   def self.paginated_primitive_search(query, options = {})
     paginate(:page => options[:page], :per_page => options[:per_page], 
              :conditions => primitive_search_conditions(query))
+  end
+
+  def audios=(params)
+    params.each do |object_hash|
+      audio = Audio.find(object_hash[:id])
+
+      if object_hash[:delete].blank?
+        self.audios << audio
+      elsif object_hash[:delete].to_i == 1
+        audio.destroy
+      end
+    end
   end
 
   private

@@ -21,12 +21,3 @@
       <td><%= link_to 'Delete', admin_audio_path(audio), :method => :delete, :confirm => 'Are you shure?'%></td>
   <% end %>
 </table>
-
-<h1>Upload new</h1>
-<% form_for (@audio || Audio.new), :url => admin_audios_path, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
-  <div>
-    <%= f.file_field :mp3 %><%= f.submit 'Upload' %>
-  </div>
-  
-<% end %>

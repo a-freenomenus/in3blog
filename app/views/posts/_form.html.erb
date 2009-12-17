@@ -23,30 +23,44 @@
     $("#post_body").markItUp(mySettings);
   });
 
+function markForDelete(id) {
+    $('#audios > #audio_' + id).remove();
+    $('#audios_fields > #audio_' + id + '_fields > .delete').val(1);
+  }
 </script>
 
-<% form_for @post do |f| %>
+<% form_for @post, :html => { :id => 'post_form' } do |f| %>
   <%= f.error_messages %>
-  <p>
+  <div>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
-  </p>
-  <p>
+  </div>
+  <div>
     <%= f.label :body %><br />
-    <%= f.text_area :body, :class => "mceEditor" %>
-  </p>
-  <p>
+    <%= f.text_area :body %>
+  </div>
+  <div>
     <%= f.label :tags_list %><br />
     <%= f.text_field :tag_list %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+  </div>
+  <div id="audios_fields">
+    <% for audio in @post.audios %>
+      <%= render :partial => 'posts/partials/audio_fields', :locals => { :audio => audio } %>
+    <% end %>
+  </div>
 <% end %>
 
-<ul id="audios">
-  <% for audio in Audio.all %>
-    <li>
-      <%= audio.mp3_file_name %>
-      <%= link_to_function 'Insert', "insertHTML(playerCode('#{audio.mp3.url(:original, false)}'))" %>
-    </li>
-  <% end %>
-</ul>
+<h3>Upload audio</h3>
+<div id="audio_form">
+  <%= render :partial => 'posts/partials/forms/audio', :object => Audio.new %>
+</div>
+
+<h3>Uploaded audios</h3>
+<div id="audios" style="margin-left: 10px">
+  <%= render :partial => 'posts/partials/audio', :collection => @post.audios %>
+</div>
+
+<div style="margin-top: 15px">
+  <%= button_to_function 'Submit', "$('#post_form').submit()" %>
+  or <%= link_to "Back to List", posts_path %>
+</div>
