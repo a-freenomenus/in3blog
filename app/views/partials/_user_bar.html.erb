@@ -1,0 +1,12 @@
+<% if logged_in? %>
+  <div>
+    Welcome 
+    <% unless current_user.open_id? %>
+      <%= link_to h(current_user.username), user_path(current_user) %>
+    <% else %>
+      <span class="user_with_open_id"><%=h current_user.username %></span>
+    <% end %>
+    !
+    <%= link_to "Log out", logout_path %>
+  </div>
+<% end %>

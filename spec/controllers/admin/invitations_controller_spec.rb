@@ -2,14 +2,10 @@ require 'spec_helper'
 
 describe Admin::InvitationsController do
 
-  #Delete these examples and add some real ones
-  it "should use Admin::InvitationsController" do
-    controller.should be_an_instance_of(Admin::InvitationsController)
-  end
-
   before(:each) do
     user = mock_model(User)
     user.stub!(:admin?).and_return(true)
+    user.stub!(:open_id?).and_return(false)
     @controller.stub!(:current_user).and_return(user)
   end
 

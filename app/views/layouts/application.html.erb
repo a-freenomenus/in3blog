@@ -9,18 +9,9 @@
   </head>
   <body>
     <div id="container">
-      <% if logged_in? %>
-        <div>
-          Welcome 
-          <% unless current_user.open_id? %>
-            <%= link_to h(current_user.username), user_path(current_user) %>
-          <% else %>
-            <span class="user_with_open_id"><%=h current_user.username %></span>
-          <% end %>
-          !
-          <%= link_to "Log out", logout_path %>
-        </div>
-      <% end %>
+
+      <%= render :partial => 'partials/user_bar' %>
+
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>

@@ -10,9 +10,18 @@
   </head>
   <body>
     <div id="container">
+
+      <%= render :partial => 'partials/user_bar' %>
+
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
+      
+      <ul class="inline">
+        <li><%= link_to_unless_current 'User invitations', admin_invitations_path %></li>
+        <li><%= link_to_unless_current 'Audios', admin_audios_path %></li>
+        <li><%= link_to_unless_current 'Static pages', admin_pages_path %></li>
+      </ul>
       
       <%- if show_title? -%>
         <h1><%=h yield(:title) %></h1>
