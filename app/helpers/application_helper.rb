@@ -29,4 +29,12 @@ module ApplicationHelper
     text.gsub(/\<cut\>.*\<\/cut\>/, '')
   end
 
+  def link_to_admin
+    if @controller.kind_of? Admin::AdminController
+      link_to 'Back to blog', root_path
+    else
+      link_to 'To admin area', admin_root_path
+    end
+  end
+
 end
