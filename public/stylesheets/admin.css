@@ -17,3 +17,9 @@
   background: url('../images/page_delete.png') no-repeat top left;
   padding-left: 20px;
 }
+
+table .handle {
+  font-size: 12px;
+  cursor: move;
+  color: #777;
+}}

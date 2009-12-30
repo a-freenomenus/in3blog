@@ -1,20 +1,29 @@
 <% title "Menu Items" %>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Url</th>
-    <th>Visible</th>
-  </tr>
-  <% for menu_item in @menu_items %>
+  <thead>
     <tr>
-      <td><%=h menu_item.name %></td>
-      <td><%=h menu_item.url %></td>
-      <td><%=h menu_item.visible %></td>
-      <td><%= link_to "Edit", edit_admin_menu_item_path(menu_item) %></td>
-      <td><%= link_to "Destroy", admin_menu_item_path(menu_item), :confirm => 'Are you sure?', :method => :delete %></td>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Visible</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody id="items">
+    <% for menu_item in @menu_items %>
+      <tr id="item_<%= menu_item.id %>">
+        <td>
+          <span class="handle">[drag]</span>
+          <%=h menu_item.name %>
+        </td>
+        <td><%=h menu_item.url %></td>
+        <td><%=h menu_item.visible %></td>
+        <td><%= link_to "Edit", edit_admin_menu_item_path(menu_item) %></td>
+        <td><%= link_to "Destroy", admin_menu_item_path(menu_item), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <p><%= link_to "New Menu Item", new_admin_menu_item_path %></p>
+
+<%= sortable_element("items", :url => sort_admin_menu_items_path, :handle => "handle") %>

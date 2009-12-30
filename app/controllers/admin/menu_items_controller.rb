@@ -37,4 +37,11 @@ class Admin::MenuItemsController < Admin::AdminController
     flash[:notice] = "Successfully destroyed menu item."
     redirect_to admin_menu_items_url
   end
+
+  def sort
+    params[:items].each_with_index do |id, index|
+      MenuItem.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
 end

@@ -9,12 +9,19 @@
   </head>
   <body>
     <div id="container">
-
       <%= render :partial => 'partials/user_bar' %>
 
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
+
+      <% unless MenuItem.visible.count == 0 %>
+        <ul id="menu" class="inline">
+          <% for item in MenuItem.visible %>
+            <li><%= link_to h(item.name), item.url %></li>
+          <% end %>
+        </ul>
+      <% end %>
       
       <%- if show_title? -%>
         <h1><%=h yield(:title) %></h1>

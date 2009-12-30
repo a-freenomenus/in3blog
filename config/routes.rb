@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :audios, :only => [:index, :create, :destroy]
     admin.resources :invitations, :only => [:index, :new, :create, :destroy]
     admin.resources :pages, :except => [:show]
-    admin.resources :menu_items
+    admin.resources :menu_items, :collection => { :sort => :post }
   end
 
   map.page ':id', :controller => 'pages', :action => 'show'
