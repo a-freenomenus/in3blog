@@ -8,7 +8,7 @@ describe Page do
   end 
   
   before(:each) do
-    Invitation.delete_all
+    Page.delete_all
   end
 
   it "should be valid" do

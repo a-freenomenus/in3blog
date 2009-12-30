@@ -1,0 +1,17 @@
+<% form_for @menu_item, 
+  :url => (@menu_item.new_record? ? admin_menu_items_path : admin_menu_item_path(@menu_item)) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :visible %>
+    <%= f.check_box :visible %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

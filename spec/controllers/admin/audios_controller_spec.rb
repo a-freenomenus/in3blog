@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Admin::AudiosController do
+  fixtures :all
+  integrate_views
 
   before(:each) do
-    user = mock_model(User)
-    user.stub!(:admin?).and_return(true)
+    user = User.find('admin')
     @controller.stub!(:current_user).and_return(user)
   end
 

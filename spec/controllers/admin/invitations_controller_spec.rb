@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Admin::InvitationsController do
+  fixtures :all
+  integrate_views
 
   before(:each) do
-    user = mock_model(User)
-    user.stub!(:admin?).and_return(true)
-    user.stub!(:open_id?).and_return(false)
+    user = User.find('admin')
     @controller.stub!(:current_user).and_return(user)
   end
 
