@@ -17,7 +17,7 @@
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <%- end -%>
       
-      <ul class="inline">
+      <ul class="inline" style="font-size: 18px">
         <li><%= link_to_unless_current 'User invitations', admin_invitations_path %></li>
         <li><%= link_to_unless_current 'Audios', admin_audios_path %></li>
         <li><%= link_to_unless_current 'Static pages', admin_pages_path %></li>
