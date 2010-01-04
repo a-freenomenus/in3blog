@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Url</th>
+      <th width="200">Name</th>
+      <th width="100">Url</th>
       <th>Visible</th>
     </tr>
   </thead>
@@ -16,7 +16,11 @@
           <%=h menu_item.name %>
         </td>
         <td><%=h menu_item.url %></td>
-        <td><%=h menu_item.visible %></td>
+        <td>
+          <% if menu_item.visible %>
+            <%= image_tag 'eye.png' %>
+          <% end %>
+        </td>
         <td><%= link_to "Edit", edit_admin_menu_item_path(menu_item) %></td>
         <td><%= link_to "Destroy", admin_menu_item_path(menu_item), :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>

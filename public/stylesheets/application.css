@@ -118,6 +118,11 @@ ul.inline li.highlighted {
   padding-left: 20px;
 }
 
+.comments a {
+  background: url('../images/comments.png') no-repeat top left;
+  padding-left: 20px;
+}
+
 input#openid_identifier {
   background: url('../images/openid.png') no-repeat top left;
   padding-left: 20px;
