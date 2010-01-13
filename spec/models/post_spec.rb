@@ -2,22 +2,24 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Post do
 
-  def new_post(attributes = {})
-    attributes[:title] ||= 'title' 
-    attributes[:body] ||= 'body'
-    Post.new(attributes)   
-  end 
-
-  it "should be valid" do
-    new_post.should be_valid
+  it "should require body and title" do
+    post = Post.new
+    %w(body title).each do |attr|
+      post.should have(1).error_on(attr)
+    end
   end
 
-  it "should require body" do
-    new_post(:body => '').should have(1).error_on(:body)
+  it "should find correctly with primitive_search method" do
+    p1 = Factory.create(:post, :title => "foo", :body => "bar")
+    p2 = Factory.create(:post, :title => "bar", :body => "foo")
+    p3 = Factory.create(:post, :title => "lorem", :body => "ipsum")
+    Post.primitive_search("foo").should == [p1, p2]
   end
 
-  it "should require title" do
-    new_post(:title => '').should have(1).error_on(:title)
+  it "should sort recent posts in descending order by created_at time" do
+    p1 = Factory.create(:post, :created_at => 1.day.ago)
+    p2 = Factory.create(:post, :created_at => Time.now)
+    Post.recent.should == [p2, p1]
   end
 
 end

@@ -2,6 +2,7 @@ class Invitation < ActiveRecord::Base
   belongs_to :recipient, :class_name => 'User'
 
   validates_presence_of :recipient_email
+  validates_uniqueness_of :recipient_email
   validates_format_of :recipient_email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validate :recipient_is_not_registered
 
