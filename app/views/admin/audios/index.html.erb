@@ -18,7 +18,7 @@
       <td><%=h audio.title %></td>
       <td><%=h audio.mp3_file_name %></td>
       <td><%= audio.bitrate %></td>
-      <td><%= number_to_human_size(audio.mp3_file_size, 2) %></td>
+      <td><%= number_to_human_size(audio.mp3_file_size, :precision => 2, :separator => ',') %></td>
       <td><%= mp3_player audio.mp3.url(:original, false) %></td>
       <td><%= link_to 'Delete', admin_audio_path(audio), :method => :delete, :confirm => 'Are you shure?'%></td>
   <% end %>
