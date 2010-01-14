@@ -21,5 +21,23 @@ describe Post do
     p2 = Factory.create(:post, :created_at => Time.now)
     Post.recent.should == [p2, p1]
   end
+  
+  it "should assign tags to post" do
+    post = Factory.create(:post, :tag_list => 'foo, bar')
+    post.tags.map(&:name).should == %w[foo bar]
+  end
+
+  it "should find tagged post" do
+    p1 = Factory.create(:post, :tag_list => 'foo, bar')
+    p2 = Factory.create(:post, :tag_list => 'foo')
+    p3 = Factory.create(:post, :tag_list => 'bar')
+    Post.find_tagged_with('bar').should == [p1, p3]
+  end
+
+  it "should correctly generate to_param" do
+    post = Factory.create(:post, :title => 'foo bar')
+    post.to_param.should == 'foo-bar'
+  end
+
 
 end
