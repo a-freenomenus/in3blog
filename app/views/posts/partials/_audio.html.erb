@@ -4,5 +4,5 @@
   <span><%=h audio.title %></span>
   <%= mp3_player(audio.mp3.url(:original, false)) %>
   <%= link_to_function 'Insert', "insertHTML(playerCode('#{audio.mp3.url(:original, false)}'))" %> | 
-  <%= link_to_function 'Delete', "markForDelete(#{audio.id})" %>
+  <%= link_to_function 'Delete', "markForDelete('audio', #{audio.id})" %>
 </div>

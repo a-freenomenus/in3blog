@@ -23,9 +23,9 @@
     $("#post_body").markItUp(mySettings);
   });
 
-function markForDelete(id) {
-    $('#audios > #audio_' + id).remove();
-    $('#audios_fields > #audio_' + id + '_fields > .delete').val(1);
+function markForDelete(type, id) {
+    $('#' + type + 's > #' + type + '_' + id).remove();
+    $('#' + type + 's_fields > #' + type + '_' + id + '_fields > .delete').val(1);
   }
 </script>
 
@@ -33,7 +33,7 @@ function markForDelete(id) {
   <%= f.error_messages %>
   <div>
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :size => 50 %>
   </div>
   <div>
     <%= f.label :body %><br />
@@ -43,12 +43,27 @@ function markForDelete(id) {
     <%= f.label :tags_list %><br />
     <%= f.text_field :tag_list %>
   </div>
+  <div id="pictures_fields">
+    <% for picture in @post.pictures %>
+      <%= render :partial => 'posts/partials/picture_fields', :locals => { :picture => picture } %>
+    <% end %>
+  </div>
   <div id="audios_fields">
     <% for audio in @post.audios %>
       <%= render :partial => 'posts/partials/audio_fields', :locals => { :audio => audio } %>
     <% end %>
   </div>
 <% end %>
+
+<h3>Upload image</h3>
+<div id="picture_form">
+  <%= render :partial => 'posts/partials/forms/picture', :object => Picture.new %>
+</div>
+
+<h3>Uploaded images</h3>
+<div id="pictures" style="margin-left: 10px">
+  <%= render :partial => 'posts/partials/picture', :collection => @post.pictures %>
+</div>
 
 <h3>Upload audio</h3>
 <div id="audio_form">

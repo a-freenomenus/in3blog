@@ -59,6 +59,20 @@ class PostsController < ApplicationController
     @comment = @post.comments.new(params[:comment])
   end
 
+  def upload_picture
+    @picture = Picture.new(params[:picture])
+
+    responds_to_parent do
+      render :update do |page|
+        if @picture.save
+          page.insert_html :bottom, 'pictures', :partial => '/posts/partials/picture', :object => @picture
+          page.insert_html :bottom, 'pictures_fields', :partial => '/posts/partials/picture_fields', :locals => { :picture => @picture }
+        end
+        page.replace_html 'picture_form', :partial => '/posts/partials/forms/picture'
+      end
+    end
+  end
+
   def upload_audio
     @audio = Audio.new(params[:audio])
 

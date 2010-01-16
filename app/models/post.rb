@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   has_many :comments, :dependent => :destroy, :order => 'created_at ASC'
   has_many :audios
+  has_many :pictures
   belongs_to :user
 
   validates_presence_of :body, :title
@@ -27,6 +28,18 @@ class Post < ActiveRecord::Base
         self.audios << audio
       elsif object_hash[:delete].to_i == 1
         audio.destroy
+      end
+    end
+  end
+
+  def pictures=(params)
+    params.each do |object_hash|
+      picture = Picture.find(object_hash[:id])
+
+      if object_hash[:delete].blank?
+        self.pictures << picture
+      elsif object_hash[:delete].to_i == 1
+        picture.destroy
       end
     end
   end

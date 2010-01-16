@@ -1,0 +1,6 @@
+<div id="picture_<%= picture.id %>_fields">
+  <% fields_for 'post[pictures][]', picture do |f| %>
+    <%= f.hidden_field :id, :index => nil %>
+    <%= f.hidden_field :delete, :index => nil, :class => 'delete', :value => '' %>
+  <% end %>
+</div>

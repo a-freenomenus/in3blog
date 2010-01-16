@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'posts', :action => 'index'
   map.resources :posts, :collection => { :feed => :get }, :member => { :comment => :post }, 
-    :collection => { :upload_audio => :post }
+    :collection => { :upload_audio => :post, :upload_picture => :post }
   
   map.logout 'logout', :controller => 'sessions', :action => 'destroy'
   map.login 'login', :controller => 'sessions', :action => 'new'
