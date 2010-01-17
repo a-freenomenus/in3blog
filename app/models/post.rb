@@ -3,8 +3,8 @@ class Post < ActiveRecord::Base
   has_friendly_id :title, :use_slug => true
 
   has_many :comments, :dependent => :destroy, :order => 'created_at ASC'
-  has_many :audios
-  has_many :pictures
+  has_many :audios, :dependent => :destroy
+  has_many :pictures, :dependent => :destroy
   belongs_to :user
 
   validates_presence_of :body, :title
