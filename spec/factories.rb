@@ -19,7 +19,3 @@ Factory.define :page do |f|
   f.body 'body'
 end
 
-Factory.define :menu_item do |f|
-  f.sequence(:name) { |n| "item #{n}" }
-  f.url 'url'
-end

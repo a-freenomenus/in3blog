@@ -1,0 +1,34 @@
+<% title "Links" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Name</th>
+      <th>Visible</th>
+    </tr>
+  </thead>
+  <tbody id="items">
+    <% for link in @links %>
+      <tr id="item_<%= link.id %>">
+        <td>
+          <span class="handle">[drag]</span>
+          <%=h link.url %>
+        </td>
+        <td><%=h link.name %></td>
+        <td>
+          <% if link.visible %>
+            <%= image_tag 'eye.png' %>
+          <% end %>
+        </td>
+        <td><%= link_to "Show", admin_link_path(link) %></td>
+        <td><%= link_to "Edit", edit_admin_link_path(link) %></td>
+        <td><%= link_to "Destroy", admin_link_path(link), :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "New Link", new_admin_link_path %></p>
+
+<%= sortable_element("items", :url => sort_admin_links_path, :handle => "handle") %>

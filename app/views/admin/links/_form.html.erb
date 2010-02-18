@@ -1,0 +1,21 @@
+<% form_for @link, :url => @link.new_record? ? admin_links_path : admin_link_path(@link) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :visible %><br />
+    <%= f.check_box :visible %>
+  </p>
+  <p>
+    <strong>Open link in</strong><br/>
+    In same window<%= f.radio_button :target, 'self' %>
+    In new window<%= f.radio_button :target, 'blank' %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

@@ -1,0 +1,16 @@
+<% title "Link" %>
+
+<p>
+  <strong>Url:</strong>
+  <%=h @link.url %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%=h @link.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_admin_link_path(@link) %> |
+  <%= link_to "Destroy", admin_link_path(@link), :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", admin_links_path %>
+</p>

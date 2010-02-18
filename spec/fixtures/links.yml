@@ -1,0 +1,13 @@
+one:
+  url: MyString
+  name: MyString
+  visible: false
+  position: 1
+  target: 1
+
+two:
+  url: MyString
+  name: MyString
+  visible: false
+  position: 1
+  target: 1
