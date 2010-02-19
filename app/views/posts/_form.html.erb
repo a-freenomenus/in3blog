@@ -43,6 +43,10 @@ function markForDelete(type, id) {
     <%= f.label :tags_list %><br />
     <%= f.text_field :tag_list %>
   </div>
+  <div>
+    <%= f.check_box :comments_enabled %>
+    <%= f.label :comments_enabled, 'Enable comments' %>
+  </div>
   <div id="pictures_fields">
     <% for picture in @post.pictures %>
       <%= render :partial => 'posts/partials/picture_fields', :locals => { :picture => picture } %>

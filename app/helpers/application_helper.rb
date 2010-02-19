@@ -37,4 +37,11 @@ module ApplicationHelper
     end
   end
 
+  # comments_enabled true or comments.count > 0
+  def display_comments(post)
+    unless post.comments.count == 0 and !post.comments_enabled
+      yield post
+    end
+  end
+
 end

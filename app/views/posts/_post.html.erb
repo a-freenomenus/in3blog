@@ -4,9 +4,12 @@
   <div>
     <%= link_to h(post.user.username), user_path(post.user) %> 
     at <em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em>
-    <div style="float:right" class="comments">
-      <%= link_to "Comments (#{post.comments.count})", post_path(post, :anchor => 'comments') %>
-    </div>
+    
+    <% display_comments(post) do |post| %>
+      <div style="float:right" class="comments">
+        <%= link_to "Comments (#{post.comments.count})", post_path(post, :anchor => 'comments') %>
+      </div>
+    <% end %>
   </div>
 
   <% unless post.tags.count.zero? %>

@@ -24,13 +24,19 @@
   </ul>
 <% end %>
 
-<a name="comments"></a>
-<h2>Comments (<span id="comments_count"><%= @post.comments.count %></span>)</h2>
+<% display_comments(@post) do |post| %>
+  <a name="comments"></a>
+  <h2>Comments (<span id="comments_count"><%= post.comments.count %></span>)</h2>
+<%end%>
 
-<div id="comment_form">
-  <%= render :partial => 'comments/form', :locals => { :comment => Comment.new } %>
-</div>
+<% if @post.comments_enabled %>
+  <div id="comment_form">
+      <%= render :partial => 'comments/form', :locals => { :comment => Comment.new } %>
+  </div>
+<% end %>
 
-<div id="comments">
-  <%= render :partial => @post.comments %>
-</div>
+<% display_comments(@post) do |post| %>
+  <div id="comments">
+    <%= render :partial => post.comments %>
+  </div>
+<% end %>
