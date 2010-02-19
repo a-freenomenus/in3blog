@@ -1,4 +1,4 @@
-<% title "Page" %>
+<% title @page.title.blank? ? "In3blog" : @page.title %>
 
 <div>
   <%=h @page.body %>
