@@ -12,7 +12,9 @@
 <% end %>
 
 <% unless params[:search].blank? %>
-  <p>Search results for <strong><%=h params[:search] %></strong></p>
+  <p>
+    <%= @posts.size.zero? ? 'No' : @posts.size %> posts was found including <strong><%=h params[:search] %></strong>.
+  </p>
 <% end %>
 
 <% if logged_in? and can? :create, Post %>
