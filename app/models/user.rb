@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_friendly_id :username
 
   has_many :posts
+  has_many :comments
 
   named_scope :admins, :conditions => { :admin => true }
   named_scope :editors, :conditions => { :admin => false }

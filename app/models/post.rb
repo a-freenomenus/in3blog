@@ -44,10 +44,6 @@ class Post < ActiveRecord::Base
     end
   end
   
-  def self.find_user_posts(user)
-    self.find(:all, :conditions => "user_id = #{user.id}")
-  end
-
   private
 
   def self.primitive_search_conditions(query)

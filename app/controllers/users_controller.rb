@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = Post.find_user_posts(@user)
-    @comments = Comment.find_user_comments(@user)
+    @posts = @user.posts
+    @comments = @user.comments
   end
 
   def edit
