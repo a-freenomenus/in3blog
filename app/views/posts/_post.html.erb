@@ -1,10 +1,13 @@
-<div style="border-bottom: 1px solid; padding-bottom: 5px;">
-  <p><%= link_to h(post.title), post %></p>
-  <div><%= cut(post.body, post_path(post)) %></div>
+<div class="post">
+  <p class="title"><%= link_to h(post.title), post %></p>
+  <div class="body"><%= cut(post.body, post_path(post)) %></div>
   <div>
-    <%= link_to h(post.user.username), user_path(post.user) %> 
-    at <em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em>
-    
+		<div class="additionals">
+			Запостил 
+	    <%= link_to h(post.user.username), user_path(post.user) %> 
+	    в <em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em>
+		</div>    
+		
     <% display_comments(post) do |post| %>
       <div style="float:right" class="comments">
         <%= link_to "Comments (#{post.comments.count})", post_path(post, :anchor => 'comments') %>

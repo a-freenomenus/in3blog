@@ -4,4 +4,8 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :body
   validates_presence_of :username, :if => Proc.new { |comment| comment.user_id.nil? }
+  
+  def self.find_user_comments(user)
+    self.find(:all, :conditions => "user_id = #{user.id}")
+  end
 end

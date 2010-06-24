@@ -1,14 +1,14 @@
 <% if logged_in? %>
-  <div>
-    Welcome 
+  <div id="user_bar">
+    Привет,  
     <% unless current_user.open_id? %>
-      <%= link_to h(current_user.username), user_path(current_user) %>!
+      <%= link_to h(current_user.username), user_path(current_user) %>! |
       <% if current_user.admin? %>
         <%= link_to_admin %> | 
       <% end %>
     <% else %>
-      <span class="user_with_open_id"><%=h current_user.username %></span>!
+      <span class="user_with_open_id"><%=h current_user.username %></span>! |
     <% end %>
-    <%= link_to "Log out", logout_path %>
+    <%= link_to "Выйти", logout_path %>
   </div>
 <% end %>

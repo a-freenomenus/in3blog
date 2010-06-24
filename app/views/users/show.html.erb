@@ -1,2 +1,6 @@
-<% title "#{h(@user.username)}'s profile" %>
+<% title "Профиль пользователя #{h(@user.username)}"  %>
+<p>С нами с: <%= @user.created_at.day %>/<%= @user.created_at.month %>/<%= @user.created_at.year %></p>
+<p>Написал постов: <%= @posts.count %></p>
+<p>Написал комментариев: <%= @comments.count %></p>
 <p><%= link_to 'Edit', edit_profile_path if @user == current_user %></p>
+

@@ -133,3 +133,22 @@ input#openid_identifier {
   background: url('../images/openid.png') no-repeat top left;
   padding-left: 20px;
 }
+
+#user_bar {
+	font-size: 10px;
+	text-align: right;
+}
+
+.post { 
+	border-bottom: 1px solid; 
+	padding-bottom: 5px;
+}
+
+.post .title {
+	font-size: 18px;
+}
+
+.post .additionals {
+	font-size: 8px;
+	font-style: italic;
+}

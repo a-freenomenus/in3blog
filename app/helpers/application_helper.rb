@@ -31,9 +31,9 @@ module ApplicationHelper
 
   def link_to_admin
     if @controller.kind_of? Admin::AdminController
-      link_to 'Back to blog', root_path
+      link_to 'Блог', root_path
     else
-      link_to 'To admin area', admin_root_path
+      link_to 'Админка', admin_root_path
     end
   end
 

@@ -43,6 +43,10 @@ class Post < ActiveRecord::Base
       end
     end
   end
+  
+  def self.find_user_posts(user)
+    self.find(:all, :conditions => "user_id = #{user.id}")
+  end
 
   private
 
@@ -51,5 +55,5 @@ class Post < ActiveRecord::Base
       '(' + %w[title body].map { |col| "#{col} LIKE #{sanitize('%' + word.to_s + '%')}" }.join(' OR ') + ')'
     end.join(' AND ')
   end
-
+  
 end
