@@ -6,11 +6,14 @@ class Ability
 
     if user.admin?
       can :manage, :all
-    elsif !user.open_id?
+    elsif user.editor?
       can :modify, Post do |post|
         post && post.user == user
       end
       can :create, Post
+      can :modify, Comment do |comment|
+        comment.post.user == user
+      end
     end
   end
 end

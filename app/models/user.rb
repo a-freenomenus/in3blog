@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
 
-  named_scope :admins, :conditions => { :admin => true }
-  named_scope :editors, :conditions => { :admin => false }
+  named_scope :admins, :conditions => { :role => 'admin' }
+  named_scope :editors, :conditions => { :role => 'editor' }
   named_scope :with_open_id, :conditions => { :open_id => true }
   
   attr_accessor :password, :old_password, :updating_password
@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4, :allow_blank => true, :if => :should_validate_password?
   validates_presence_of :old_password, :if => :updating_password
   validate :old_password_matching, :if => :updating_password
+  validates_inclusion_of :role, :in => %w(admin editor), :allow_blank => true
   
   # login can be either username or email address
   def self.authenticate(login, pass)
@@ -36,6 +37,14 @@ class User < ActiveRecord::Base
 
   def self.find_by_open_id(open_id)
     with_open_id.find_by_username(open_id)
+  end
+
+  def admin?
+    role == 'admin'
+  end
+
+  def editor?
+    role == 'editor'
   end
 
   private

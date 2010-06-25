@@ -78,4 +78,35 @@ describe User do
     new_user(:username => 'foobar', :password => 'secret').save!
     User.authenticate('foobar', 'badpassword').should be_nil
   end
+
+  context "role is admin" do
+    before do
+      @u = new_user
+      @u.role = 'admin'
+    end
+
+    it "admin? should return true" do
+      @u.admin?.should be_true
+    end
+
+    it "editor? should return false" do
+      @u.editor?.should be_false
+    end
+  end
+
+  context "role is editor" do
+    before do
+      @u = new_user
+      @u.role = 'editor'
+    end
+
+    it "admin? should return false" do
+      @u.admin?.should be_false
+    end
+
+    it "editor? should return true" do
+      @u.editor?.should be_true
+    end
+  end
+
 end

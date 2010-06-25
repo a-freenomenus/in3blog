@@ -1,11 +1,10 @@
-User.create(:username => 'editor', :email => 'editor@domain.com',
-           :password => 'editor', :password_confirmation => 'editor') unless User.find_by_username('editor')
-
-unless User.find_by_username('administrator')
-  user = User.create(:username => 'administrator', :email => 'administrator@domain.com',
-             :password => 'administrator', :password_confirmation => 'administrator')
-  user.admin = true
-  user.save
+%w(admin editor).each do |uname|
+  unless User.find_by_username(uname)
+    u = User.new(:username => uname, :email => "#{uname}@domain.com",
+             :password => uname, :password_confirmation => uname) 
+    u.role = uname
+    u.save
+  end
 end
 
 unless Page.find_by_permalink('about')
