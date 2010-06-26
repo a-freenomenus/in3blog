@@ -1,5 +1,4 @@
 <div id="picture_<%= picture.id %>">
   <%= image_tag picture.image.url(:thumb) %>
-  <%#= link_to_function 'Insert', "insertHTML(playerCode('#{audio.mp3.url(:original, false)}'))" %> | 
   <%= link_to_function 'Delete', "markForDelete('picture', #{picture.id})" %>
 </div>

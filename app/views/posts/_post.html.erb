@@ -5,7 +5,7 @@
 		<div class="additionals">
 			Запостил 
 	    <%= link_to h(post.user.username), user_path(post.user) %> 
-	    в <em><%= post.created_at.strftime('%H:%M:%S %d.%m.%Y') %></em>
+	    в <em><%=l post.created_at %></em>
 		</div>    
 		
     <% display_comments(post) do |post| %>
